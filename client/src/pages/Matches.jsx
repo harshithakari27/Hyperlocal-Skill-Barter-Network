@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import api from '../services/api';
 import { useAuth } from '../context/AuthContext';
+import Spinner from '../components/Spinner';
 
 function Matches() {
   const { userId } = useAuth();
@@ -28,7 +29,7 @@ function Matches() {
       await api.patch(`/matches/${matchId}`, { status });
       fetchMatches();
     } catch (err) {
-      console.log(err);
+      alert(err.response?.data?.message || 'Something went wrong');
     }
   };
 
@@ -42,7 +43,7 @@ function Matches() {
   };
 
   if (!userId) return <p>Please log in to see your matches.</p>;
-  if (loading) return <p>Loading matches...</p>;
+  if (loading) return <Spinner label="Loading matches..." />;
 
   return (
     <div>

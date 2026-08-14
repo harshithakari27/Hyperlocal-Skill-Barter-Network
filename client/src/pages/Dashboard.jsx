@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import api from '../services/api';
 import { useAuth } from '../context/AuthContext';
+import Spinner from '../components/Spinner';
 
 function Dashboard() {
   const { userId } = useAuth();
@@ -23,24 +24,21 @@ function Dashboard() {
   }, [userId]);
 
   if (!userId) return <p>Please log in to see your dashboard.</p>;
-  if (loading) return <p>Loading dashboard...</p>;
+  if (loading) return <Spinner label="Loading dashboard..." />;
   if (!stats) return <p>Failed to load dashboard.</p>;
 
-  const matchData = Object.entries(stats.matchesByStatus).map(([status, count]) => ({
-    status,
-    count
-  }));
+  const matchData = Object.entries(stats.matchesByStatus).map(([status, count]) => ({ status, count }));
 
   return (
     <div>
       <h2>Dashboard</h2>
 
-      <div style={{ display: 'flex', gap: '16px', marginBottom: '10px' }}>
-        <div className="card" style={{ flex: 1, textAlign: 'center' }}>
+      <div style={{ display: 'flex', gap: '16px', marginBottom: '10px', flexWrap: 'wrap' }}>
+        <div className="card" style={{ flex: '1 1 140px', textAlign: 'center' }}>
           <h3>{stats.skillsPosted}</h3>
           <p>Skills Posted</p>
         </div>
-        <div className="card" style={{ flex: 1, textAlign: 'center' }}>
+        <div className="card" style={{ flex: '1 1 140px', textAlign: 'center' }}>
           <h3>{stats.creditBalance}</h3>
           <p>Credit Balance</p>
         </div>
