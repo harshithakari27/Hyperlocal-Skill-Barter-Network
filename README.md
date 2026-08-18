@@ -5,6 +5,19 @@ tutoring -- without paying money. Instead, everyone starts with a few free "cred
 teaching someone, and you spend credits when someone teaches you. The app matches people who live
 near each other, so it's easy to actually meet up.
 
+Technologies Used :
+
+Frontend: React (Vite) — UI framework and build tool
+Routing: React Router DOM — multi-page navigation (SPA)
+HTTP client: Axios — talking to the backend API
+Real-time: Socket.io (client + server) — live chat between matched users
+Maps: Leaflet + react-leaflet — location picker + skill map pins
+Charts: Recharts — dashboard data visualization
+Backend: Node.js + Express.js — REST API server
+Database: MongoDB Atlas (Mongoose) — data storage, geospatial queries
+Auth: JWT + bcryptjs — login sessions + password hashing
+Deployment: Vercel (frontend) / Render (backend) — live hosting
+
 How Someone Actually Uses It ? :
 
 Step 1 -- Creating an Account
